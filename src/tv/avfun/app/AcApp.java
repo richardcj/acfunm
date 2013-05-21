@@ -216,7 +216,7 @@ public class AcApp extends Application {
         SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
         SearchableInfo info = searchManager.getSearchableInfo(activity.getComponentName());
         searchView.setSearchableInfo(info);
-        searchView.setQueryHint("搜索...");
+        searchView.setQueryHint("关键字或aid");
         menu.add("Search").setIcon(R.drawable.action_search).setActionView(searchView)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         View v = searchView.findViewById(R.id.abs__search_plate);

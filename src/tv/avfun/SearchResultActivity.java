@@ -11,6 +11,7 @@ import tv.avfun.api.ChannelApi;
 import tv.avfun.entity.Contents;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,15 +46,25 @@ public class SearchResultActivity extends BaseListActivity  implements OnClickLi
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_layout);
+		MobclickAgent.onEvent(this, "view_search");
 		   Intent intent = getIntent();
 		    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 		    	word = intent.getStringExtra(SearchManager.QUERY);
+		    	int id = getAid();
+		    	if(id > 0){
+    	            Intent detail = new Intent();
+    	            detail.setAction(Intent.ACTION_VIEW);
+    	            detail.setData(Uri.parse("av://ac"+id));
+    	            finish();
+    	            startActivity(detail);
+    	            return;
+		    	}
 		    }
 		    
 		    ActionBar ab = getSupportActionBar();
 	        ab.setDisplayHomeAsUpEnabled(true);
-	        ab.setTitle("搜索结果");
-	        MobclickAgent.onEvent(this, "view_search");
+	        ab.setTitle(word + " - 搜索结果");
+	        
 			 progressBar = (ProgressBar)findViewById(R.id.time_progress);
 			 time_outtext = (TextView)findViewById(R.id.time_out_text);
 			 time_outtext.setOnClickListener(this);
@@ -73,7 +84,14 @@ public class SearchResultActivity extends BaseListActivity  implements OnClickLi
 			getdatas(1, false);
 	}
 	
-	
+	private int getAid(){
+	    try{
+            int id = Integer.parseInt(word);
+            return id;
+        }catch (Exception e) {
+            return -1;
+        }
+	}
 	public void onResume() {
 	    super.onResume();
 	    MobclickAgent.onResume(this);
@@ -90,7 +108,6 @@ public class SearchResultActivity extends BaseListActivity  implements OnClickLi
 		}
 		isload = true;
 		new Thread() {
-			@SuppressWarnings("unchecked")
 			public void run() {
 				try {
 				    final List<Contents> tempdata = ApiParser.getSearchContents(word, page);
