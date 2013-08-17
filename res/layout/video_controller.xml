@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/mediacontroller_file_name"
+        style="@style/MediaController_Text"
+        android:layout_width="match_parent"
+        android:layout_height="30dip"
+        android:layout_alignParentTop="true"
+        android:background="@color/half_transparent"
+        android:ellipsize="marquee"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/player_overlay_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/video_list_length_bg"
+        android:padding="5dp"
+        android:textColor="#ffffff"
+        android:textSize="36dp"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/half_transparent"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:id="@+id/controller_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="5dip" >
+
+            <TextView
+                android:id="@+id/mediacontroller_time_current"
+                style="@style/MediaController_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical" />
+
+            <SeekBar
+                android:id="@+id/mediacontroller_seekbar"
+                style="@style/MediaController_SeekBar"
+                android:minHeight="10dp"
+                android:maxHeight="10dp"
+                android:thumb="@drawable/mediacontroller_seekbar_thumb"
+                android:progressDrawable="@drawable/po_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:max="1000"
+                android:paddingLeft="50dip"
+                android:paddingRight="50dip" />
+
+            <TextView
+                android:id="@+id/mediacontroller_time_total"
+                style="@style/MediaController_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/mediacontroller_play_pause"
+            android:layout_width="54.6dip"
+            android:layout_height="32dip"
+            android:layout_below="@id/controller_frame"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/mediacontroller_play_button"
+            android:contentDescription="@string/mediacontroller_play_pause"
+            android:src="@drawable/pause" />
+    </RelativeLayout>
+
+</RelativeLayout>
