@@ -130,7 +130,7 @@ public class FavoritesFragment extends ListFragment {
             if(mCurrentPage == 1 || mAdapter== null){
                 mAdapter = new FavsAdapter(mActivity, result.contents);
                 setListAdapter(mAdapter);
-                if(result == null || result.contents.isEmpty()){
+                if (result == null || result.contents == null || result.contents.isEmpty()) {
                     setEmptyText("你还没有收藏过视频");
                 }
             }else{
