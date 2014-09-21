@@ -79,7 +79,9 @@ public class HomeFragment extends RefreshActionGridFragment {
 
     private void setNumColumns() {
         int w = getResources().getDisplayMetrics().widthPixels;
-        int n = w / getResources().getDimensionPixelSize(R.dimen.item_cat_width);
+        int iw = getResources().getDimensionPixelSize(R.dimen.item_width);
+        int padding = mGridView.getRequestedHorizontalSpacing();
+        int n = (w + padding) / (iw + padding);
         if (n < 2) n = 2;
         mGridView.setNumColumns(n);
         mNumColumns = n;
